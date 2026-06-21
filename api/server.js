@@ -1,14 +1,13 @@
 const express = require('express');
 const { GoogleGenAI } = require('@google/genai');
-const path = require('path');
 
 const app = express();
 app.use(express.json());
-app.use(express.static(path.join(__dirname)));
 
+// Securely initialized with your Gemini API key
 const ai = new GoogleGenAI({ apiKey: "AIzaSyAZfkSxXE-oAc9wBuABOcQEkWl084QlAPc" }); 
 
-// All bag entries set to a uniform flat rate of KSh 360
+// Flat rate inventory data
 let bagsData = [
     { id: 1, name: "Vintage Suede TikTok Tote Bag", price: 360, image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600", available: true },
     { id: 2, name: "Y2K Aesthetic Utility Shoulder Bag", price: 360, image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600", available: true },
@@ -18,10 +17,12 @@ let bagsData = [
     { id: 6, name: "Retro Checkerboard Knit Bag", price: 360, image: "https://images.unsplash.com/photo-1575032617751-6ddec2089882?w=600", available: true }
 ];
 
+// Fetch current inventory
 app.get('/api/bags', (req, res) => {
     res.json(bagsData);
 });
 
+// Reservation trigger
 app.post('/api/buy', (req, res) => {
     const { id } = req.body;
     const bagIndex = bagsData.findIndex(b => b.id === parseInt(id));
@@ -33,6 +34,7 @@ app.post('/api/buy', (req, res) => {
     res.status(400).json({ success: false, message: "Item unavailable." });
 });
 
+// Priced AI Route
 app.post('/api/ai', async (req, res) => {
     const { message } = req.body;
     try {
@@ -54,7 +56,12 @@ app.post('/api/ai', async (req, res) => {
     }
 });
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Jeruu Collections server running at http://localhost:${PORT}`);
-});
+// EXPORT FOR VERCEL SERVERLESS ENVIRONMENT
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = 3000;
+    app.listen(PORT, () => {
+        console.log(`Server running at http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;
