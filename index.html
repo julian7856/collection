@@ -1,5 +1,4 @@
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,12 +6,13 @@
     <title>Jeruu Collections | Premium Thrift Bags</title>
     <style>
         :root {
-            --primary: #111111;
-            --accent: #ff4757;
-            --bg: #fafafa;
-            --card-bg: #ffffff;
-            --text: #2f3542;
-            --border: #f1f2f6;
+            --bg-dark: #0b0914;
+            --panel-bg: rgba(22, 19, 38, 0.75);
+            --accent-purple: #9d4edd;
+            --neon-glow: #c77dff;
+            --text-light: #f7f4f9;
+            --text-muted: #a499b3;
+            --border-purple: rgba(157, 78, 221, 0.25);
         }
 
         * {
@@ -23,71 +23,82 @@
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(76, 41, 122, 0.15) 0px, transparent 50%),
+                radial-gradient(at 90% 80%, rgba(157, 78, 221, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
             padding-bottom: 100px;
         }
 
-        /* Hero Header Section */
+        /* Aesthetic Purple Hero Header */
         header {
-            background: linear-gradient(135deg, #1e1e24 0%, #111111 100%);
-            color: white;
+            background: rgba(16, 12, 32, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-purple);
             text-align: center;
             padding: 60px 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
         header h1 {
-            font-size: 2.8rem;
-            letter-spacing: 3px;
+            font-size: 3rem;
+            letter-spacing: 4px;
             margin-bottom: 12px;
             font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 30%, var(--neon-glow) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(157, 78, 221, 0.3);
         }
 
         header p {
-            color: #a4b0be;
+            color: var(--text-muted);
             font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.5;
         }
 
-        /* Content Container */
+        /* Main Grid Wrapper */
         .container {
             max-width: 1200px;
             margin: 50px auto;
             padding: 0 25px;
         }
 
-        /* Product Catalog Grid */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 35px;
         }
 
-        /* Premium Card Design */
+        /* Glowing Purple Premium Card Design */
         .card {
-            background: var(--card-bg);
-            border-radius: 16px;
+            background: var(--panel-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-purple);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
         }
 
         .card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            border-color: var(--neon-glow);
+            box-shadow: 0 15px 40px rgba(157, 78, 221, 0.25);
         }
 
         .img-container {
             position: relative;
             width: 100%;
             height: 380px;
-            background-color: #f5f5f5;
+            background-color: #131024;
             overflow: hidden;
         }
 
@@ -95,18 +106,19 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
+            transition: transform 0.6s ease;
         }
 
         .card:hover img {
-            transform: scale(1.04);
+            transform: scale(1.05);
         }
 
+        /* Neon Label Badge */
         .badge {
             position: absolute;
             top: 15px;
             right: 15px;
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent-purple) 0%, #7b2cbf 100%);
             color: white;
             padding: 6px 14px;
             border-radius: 20px;
@@ -114,12 +126,15 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 4px 10px rgba(255, 71, 87, 0.3);
+            box-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .badge.sold-out {
-            background: #747d8c;
+            background: #312a42;
+            color: #7a718c;
             box-shadow: none;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .card-body {
@@ -130,58 +145,61 @@
         }
 
         .card-title {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--primary);
+            margin-bottom: 10px;
+            color: var(--text-light);
             line-height: 1.4;
             min-height: 56px;
         }
 
         .card-price {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 800;
-            color: var(--accent);
+            color: var(--neon-glow);
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
+            text-shadow: 0 0 10px rgba(199, 125, 255, 0.2);
         }
 
         .card-price span {
             font-size: 0.9rem;
             font-weight: 600;
-            color: #a4b0be;
+            color: var(--text-muted);
+            margin-right: 2px;
         }
 
-        /* Premium Actions */
+        /* Glassmorphism Neon Control Buttons */
         .btn {
             display: block;
             width: 100%;
             padding: 14px;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--accent-purple) 0%, #6a0dad 100%);
             color: white;
-            border: none;
-            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
             text-align: center;
-            transition: all 0.2s;
+            transition: all 0.3s;
             margin-top: auto;
             letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
         }
 
         .btn:hover {
-            background: #2a2a2a;
+            background: linear-gradient(135deg, #b55fe6 0%, var(--accent-purple) 100%);
+            box-shadow: 0 0 25px rgba(157, 78, 221, 0.6);
             transform: translateY(-1px);
         }
 
         .btn:disabled {
-            background: #e4e7eb;
-            color: #a4b0be;
+            background: #201a30;
+            color: #534c61;
+            border-color: rgba(255, 255, 255, 0.02);
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
         }
 
         /* Floating AI Action Bubble */
@@ -189,7 +207,7 @@
             position: fixed;
             bottom: 35px;
             right: 35px;
-            background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--neon-glow) 100%);
             color: white;
             border: none;
             width: 65px;
@@ -197,34 +215,36 @@
             border-radius: 50%;
             font-size: 1.8rem;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
+            box-shadow: 0 0 25px rgba(157, 78, 221, 0.5);
             z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .ai-toggle:hover {
-            transform: scale(1.08);
+            transform: scale(1.1) rotate(5deg);
         }
 
-        /* Beautiful AI Floating Chat Window */
+        /* Gorgeous Purple AI Chat Terminal */
         .ai-chat {
             position: fixed;
             bottom: 115px;
             right: 35px;
             width: 380px;
             height: 520px;
-            background: white;
-            border-radius: 18px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.16);
+            background: rgba(18, 14, 36, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 22px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
             display: none;
             flex-direction: column;
             overflow: hidden;
             z-index: 1000;
-            border: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
+            border: 1px solid var(--border-purple);
         }
 
         .ai-chat.active {
@@ -232,23 +252,25 @@
         }
 
         .chat-header {
-            background: var(--primary);
+            background: rgba(28, 22, 54, 0.8);
+            border-bottom: 1px solid var(--border-purple);
             color: white;
             padding: 20px;
             font-weight: 700;
             font-size: 1.1rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .chat-header::before {
             content: '';
             width: 10px;
             height: 10px;
-            background: #2ed573;
+            background: #39ff14;
             border-radius: 50%;
             display: inline-block;
+            box-shadow: 0 0 10px #39ff14;
         }
 
         .chat-messages {
@@ -258,68 +280,73 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            background-color: #f8f9fa;
+            background-color: rgba(11, 9, 20, 0.4);
         }
 
         .msg {
             max-width: 82%;
             padding: 12px 16px;
-            border-radius: 14px;
+            border-radius: 16px;
             font-size: 0.95rem;
             line-height: 1.45;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
         .msg.user {
-            background: var(--primary);
+            background: var(--accent-purple);
             color: white;
             align-self: flex-end;
             border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 12px rgba(157, 78, 221, 0.2);
         }
 
         .msg.bot {
-            background: white;
-            color: var(--text);
+            background: rgba(36, 29, 66, 0.6);
+            color: var(--text-light);
             align-self: flex-start;
             border-bottom-left-radius: 4px;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(157, 78, 221, 0.15);
         }
 
         .chat-input-area {
             display: flex;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid var(--border-purple);
             padding: 15px;
-            background: white;
+            background: rgba(18, 14, 36, 0.8);
             gap: 10px;
         }
 
         .chat-input-area input {
             flex: 1;
             padding: 12px 16px;
-            border: 1px solid #e4e7eb;
-            border-radius: 8px;
+            background: rgba(11, 9, 20, 0.6);
+            border: 1px solid var(--border-purple);
+            border-radius: 10px;
             outline: none;
             font-size: 0.95rem;
-            transition: border-color 0.2s;
+            color: white;
+            transition: all 0.3s;
         }
 
         .chat-input-area input:focus {
-            border-color: var(--accent);
+            border-color: var(--neon-glow);
+            box-shadow: 0 0 10px rgba(199, 125, 255, 0.2);
         }
 
         .chat-input-area button {
-            background: var(--primary);
+            background: var(--accent-purple);
             color: white;
             border: none;
             padding: 0 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
             transition: background 0.2s;
+            box-shadow: 0 2px 10px rgba(157, 78, 221, 0.2);
         }
 
         .chat-input-area button:hover {
-            background: #2a2a2a;
+            background: var(--neon-glow);
+            box-shadow: 0 0 15px rgba(199, 125, 255, 0.4);
         }
 
         @media (max-width: 480px) {
