@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,6 +12,7 @@
             --bg: #fafafa;
             --card-bg: #ffffff;
             --text: #2f3542;
+            --border: #f1f2f6;
         }
 
         * {
@@ -26,128 +28,203 @@
             padding-bottom: 100px;
         }
 
+        /* Hero Header Section */
         header {
-            background: var(--primary);
+            background: linear-gradient(135deg, #1e1e24 0%, #111111 100%);
             color: white;
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
         header h1 {
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
+            font-size: 2.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            font-weight: 800;
         }
 
         header p {
             color: #a4b0be;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
         }
 
+        /* Content Container */
         .container {
             max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 50px auto;
+            padding: 0 25px;
         }
 
+        /* Product Catalog Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 35px;
         }
 
+        /* Premium Card Design */
         .card {
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
-            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+
+        .img-container {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            background-color: #f5f5f5;
+            overflow: hidden;
         }
 
         .card img {
             width: 100%;
-            height: 350px;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .card:hover img {
+            transform: scale(1.04);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(255, 71, 87, 0.3);
+        }
+
+        .badge.sold-out {
+            background: #747d8c;
+            box-shadow: none;
         }
 
         .card-body {
-            padding: 20px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .card-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
             color: var(--primary);
+            line-height: 1.4;
+            min-height: 56px;
         }
 
         .card-price {
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: 800;
             color: var(--accent);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
+        .card-price span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #a4b0be;
+        }
+
+        /* Premium Actions */
         .btn {
             display: block;
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background: var(--primary);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 10px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             text-align: center;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            margin-top: auto;
+            letter-spacing: 0.5px;
         }
 
         .btn:hover {
-            background: #333333;
+            background: #2a2a2a;
+            transform: translateY(-1px);
         }
 
         .btn:disabled {
-            background: #ced6e0;
+            background: #e4e7eb;
+            color: #a4b0be;
             cursor: not-allowed;
+            transform: none;
         }
 
-        /* Floating AI Button */
+        /* Floating AI Action Bubble */
         .ai-toggle {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--accent);
+            bottom: 35px;
+            right: 35px;
+            background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
             color: white;
             border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50px;
-            font-size: 1.5rem;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            font-size: 1.8rem;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(255, 71, 87, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
             z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
         }
 
-        /* AI Chat Window */
+        .ai-toggle:hover {
+            transform: scale(1.08);
+        }
+
+        /* Beautiful AI Floating Chat Window */
         .ai-chat {
             position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 350px;
-            height: 450px;
+            bottom: 115px;
+            right: 35px;
+            width: 380px;
+            height: 520px;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            border-radius: 18px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.16);
             display: none;
             flex-direction: column;
             overflow: hidden;
             z-index: 1000;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
         }
 
         .ai-chat.active {
@@ -157,60 +234,106 @@
         .chat-header {
             background: var(--primary);
             color: white;
-            padding: 15px;
-            font-weight: bold;
+            padding: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-header::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #2ed573;
+            border-radius: 50%;
+            display: inline-block;
         }
 
         .chat-messages {
             flex: 1;
-            padding: 15px;
+            padding: 20px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
+            background-color: #f8f9fa;
         }
 
         .msg {
-            max-width: 80%;
-            padding: 10px 14px;
-            border-radius: 8px;
+            max-width: 82%;
+            padding: 12px 16px;
+            border-radius: 14px;
             font-size: 0.95rem;
-            line-height: 1.4;
+            line-height: 1.45;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
         .msg.user {
-            background: #dfe4ea;
+            background: var(--primary);
+            color: white;
             align-self: flex-end;
+            border-bottom-right-radius: 4px;
         }
 
         .msg.bot {
-            background: #ffeff1;
-            color: #b31b28;
+            background: white;
+            color: var(--text);
             align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            border: 1px solid var(--border);
         }
 
         .chat-input-area {
             display: flex;
-            border-top: 1px solid #eee;
-            padding: 10px;
+            border-top: 1px solid var(--border);
+            padding: 15px;
+            background: white;
+            gap: 10px;
         }
 
         .chat-input-area input {
             flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 12px 16px;
+            border: 1px solid #e4e7eb;
+            border-radius: 8px;
             outline: none;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+
+        .chat-input-area input:focus {
+            border-color: var(--accent);
         }
 
         .chat-input-area button {
             background: var(--primary);
             color: white;
             border: none;
-            padding: 0 15px;
-            margin-left: 5px;
-            border-radius: 4px;
+            padding: 0 20px;
+            border-radius: 8px;
+            font-weight: 600;
             cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .chat-input-area button:hover {
+            background: #2a2a2a;
+        }
+
+        @media (max-width: 480px) {
+            .ai-chat {
+                width: calc(100% - 40px);
+                right: 20px;
+                left: 20px;
+                bottom: 100px;
+                height: 450px;
+            }
+            .ai-toggle {
+                bottom: 20px;
+                right: 20px;
+            }
         }
     </style>
 </head>
@@ -218,21 +341,21 @@
 
     <header>
         <h1>JERUU COLLECTIONS</h1>
-        <p>Thrift Bags Curated from Trending Styles</p>
+        <p>Premium thrift bags curated directly from trending global styles. Fast delivery across Kenya.</p>
     </header>
 
     <div class="container">
         <div id="bags-grid" class="grid">
-            <!-- Dynamic bags injected here -->
+            <!-- Dynamic items load here -->
         </div>
     </div>
 
-    <!-- AI Chat Elements -->
+    <!-- Floating Bubble AI Component -->
     <button class="ai-toggle" onclick="toggleChat()">💬</button>
     <div id="aiChat" class="ai-chat">
         <div class="chat-header">Priced AI Assistant</div>
         <div id="chatMessages" class="chat-messages">
-            <div class="msg bot">Hello! Ask me about bag availability, pricing, or calculate shipping costs!</div>
+            <div class="msg bot">Welcome to Jeruu Collections! I can help you check bag stock, review pricing, or compute your instant local shipping rates. What's on your mind?</div>
         </div>
         <div class="chat-input-area">
             <input type="text" id="userInput" placeholder="Ask Priced AI..." onkeypress="handleKey(event)">
@@ -241,7 +364,7 @@
     </div>
 
     <script>
-        // Load Inventory From Backend
+        // Load Catalog Elements From API Route
         async function loadBags() {
             try {
                 const response = await fetch('/api/bags');
@@ -252,23 +375,28 @@
                 bags.forEach(bag => {
                     grid.innerHTML += `
                         <div class="card">
-                            <img src="${bag.image}" alt="${bag.name}">
+                            <div class="img-container">
+                                <img src="${bag.image}" alt="${bag.name}">
+                                <span class="badge ${!bag.available ? 'sold-out' : ''}">
+                                    ${bag.available ? 'Trending' : 'Sold Out'}
+                                </span>
+                            </div>
                             <div class="card-body">
                                 <div class="card-title">${bag.name}</div>
-                                <div class="card-price">KSh ${bag.price}</div>
+                                <div class="card-price"><span>KSh</span> ${bag.price}</div>
                                 <button class="btn" ${!bag.available ? 'disabled' : ''} onclick="reserveBag(${bag.id})">
-                                    ${bag.available ? 'Claim Instantly' : 'SOLD OUT'}
+                                    ${bag.available ? 'Claim &amp; Reserve' : 'SOLD OUT'}
                                 </button>
                             </div>
                         </div>
                     `;
                 });
             } catch (err) {
-                console.error("Error loading catalogue profiles:", err);
+                console.error("Error connecting to inventory server:", err);
             }
         }
 
-        // Reserve Item Actions
+        // Handle Claim and Reservations
         async function reserveBag(id) {
             try {
                 const response = await fetch('/api/buy', {
@@ -278,13 +406,13 @@
                 });
                 const data = await response.json();
                 alert(data.message);
-                loadBags(); // Refresh display state instantly
+                loadBags(); 
             } catch (err) {
-                alert("Reservation processing error.");
+                alert("Could not process your item claim.");
             }
         }
 
-        // Toggle Chat Visibility
+        // Control Floating Widget Display
         function toggleChat() {
             document.getElementById('aiChat').classList.toggle('active');
         }
@@ -293,15 +421,13 @@
             if (e.key === 'Enter') sendToAI();
         }
 
-        // Communication Interface for Priced AI
+        // Bridge request channels to serverless AI module
         async function sendToAI() {
             const input = document.getElementById('userInput');
             const message = input.value.trim();
             if (!message) return;
 
             const chatMessages = document.getElementById('chatMessages');
-            
-            // Render user text bubble
             chatMessages.innerHTML += `<div class="msg user">${message}</div>`;
             input.value = '';
             chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -314,15 +440,14 @@
                 });
                 const data = await response.json();
                 
-                // Render agent text bubble
                 chatMessages.innerHTML += `<div class="msg bot">${data.reply}</div>`;
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             } catch (err) {
-                chatMessages.innerHTML += `<div class="msg bot">Connection dropped. Please retry.</div>`;
+                chatMessages.innerHTML += `<div class="msg bot">Communication dropped. Please try again.</div>`;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             }
         }
 
-        // Initialization
         window.onload = loadBags;
     </script>
 </body>
